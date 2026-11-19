@@ -61,12 +61,40 @@ svg { fill: currentColor; }
 .side { position: sticky; top: var(--s6); align-self: start; max-height: calc(100vh - 2 * var(--s6)); overflow-y: auto; padding-right: var(--s2); scrollbar-width: thin; }
 
 /* ─── Sidebar ─── */
-.photo {
-  display: block; width: 132px; height: 132px; object-fit: cover;
-  border-radius: 50%; margin-bottom: var(--s5);
-  padding: 4px; border: 2px solid var(--trace); background: var(--paper);
+/* Name with photo. Desktop: photo beside "Ali", above the end of "Entezari".
+   Phones and tablets: photo on the right, centred on both lines. */
+.name-photo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "first photo" "last last";
+  column-gap: 1rem;
+  align-items: end;
 }
-@media (max-width: 560px) { .photo { width: 112px; height: 112px; } }
+.name-photo .first { grid-area: first; }
+.name-photo .last { grid-area: last; }
+.name-photo span { display: block; }
+/* The photo lives inside the h1, so em units follow the name's font size. */
+.photo {
+  grid-area: photo;
+  display: block; width: .74em; height: .74em; object-fit: cover;
+  border-radius: 50%;
+  padding: 3px; border: 2px solid var(--trace); background: var(--paper);
+  margin-bottom: .085em; /* top on the cap height, bottom on the baseline of "Ali" */
+}
+@media (max-width: 900px) {
+  .name-photo {
+    grid-template-columns: auto auto;
+    grid-template-areas: "first photo" "last photo";
+    justify-content: start;
+    column-gap: 1.75rem;
+    align-items: center;
+  }
+  /* Two lines of the name are 2 × .92em tall. */
+  .photo { width: 1.8em; height: 1.8em; margin: 0; }
+}
+@media (max-width: 560px) {
+  .name-photo { justify-content: space-between; column-gap: 1rem; }
+}
 .name {
   font-weight: 800;
   font-size: clamp(3rem, 2rem + 3vw, 4.4rem);
