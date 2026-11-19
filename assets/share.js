@@ -31,8 +31,8 @@
     history.replaceState(null, '', isPdf ? '#resume' : '#reminder');
 
     if (isPdf) {
-      Resume.renderQr(qrEl, Resume.pdfUrl(), 'M');
-      qrEl.setAttribute('aria-label', 'QR code that opens the PDF resume');
+      Resume.renderQr(qrEl, Resume.savePageUrl(), 'M');
+      qrEl.setAttribute('aria-label', 'QR code to save the PDF resume');
       return;
     }
     var where = met.value.trim();

@@ -132,6 +132,7 @@
   window.Resume = {
     siteBase: siteBase,
     pdfUrl: function () { return siteBase() + PDF_FILE; },
+    savePageUrl: function () { return siteBase() + 'save.html'; },
     veventForQr: veventForQr,
     icsFile: icsFile,
     googleCalendarUrl: googleCalendarUrl,

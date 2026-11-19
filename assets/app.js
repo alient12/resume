@@ -72,6 +72,6 @@
 
   // QR codes in "Take this with you". The reminder uses the link version so the date
   // is worked out when someone scans it, even if this tab has been open for days.
-  Resume.renderQr(document.getElementById('qr-pdf'), Resume.pdfUrl(), 'M');
+  Resume.renderQr(document.getElementById('qr-pdf'), Resume.savePageUrl(), 'M');
   Resume.renderQr(document.getElementById('qr-remind'), Resume.remindPageUrl(), 'M');
 })();

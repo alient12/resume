@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Save Ali Entezari's resume</title>
+<meta name="theme-color" content="#EEF1F5">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .card { max-width: 30rem; margin: 0 auto; padding: 3rem 1.5rem calc(2rem + env(safe-area-inset-bottom)); }
+  .card .name { font-size: clamp(2.6rem, 12vw, 3.6rem); }
+  .card .role { max-width: none; }
+  .stack-btns { display: grid; gap: .6rem; margin: 2rem 0 .75rem; }
+  .stack-btns .btn { width: 100%; min-height: 56px; font-size: 1.05rem; }
+  .tip { color: var(--muted); font-size: .95rem; min-height: 1.6em; margin-bottom: 2rem; }
+  .tip strong { color: var(--ink); font-weight: 600; }
+  .links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: .95rem; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1 class="name">Ali<br>Entezari</h1>
+    <p class="role">Python developer and applied AI engineer, finishing an M.Sc. at Polytechnique Montréal. Available for remote work from January 2027.</p>
+
+    <div class="stack-btns">
+      <a class="btn btn-primary" id="save" href="Ali_Entezari_Resume.pdf" download>Save resume to my phone</a>
+      <a class="btn" href="Ali_Entezari_Resume.pdf">Open the PDF</a>
+    </div>
+    <p class="tip" id="tip" role="status"></p>
+
+    <div class="links">
+      <a href="./">View the interactive resume</a>
+      <a href="https://www.linkedin.com/in/ali-e-8a878ab6/">LinkedIn</a>
+      <a href="https://github.com/alient12">GitHub</a>
+    </div>
+  </main>
+  <script src="assets/save.js"></script>
+</body>
+</html>
