@@ -61,6 +61,12 @@ svg { fill: currentColor; }
 .side { position: sticky; top: var(--s6); align-self: start; max-height: calc(100vh - 2 * var(--s6)); overflow-y: auto; padding-right: var(--s2); scrollbar-width: thin; }
 
 /* ─── Sidebar ─── */
+.photo {
+  display: block; width: 132px; height: 132px; object-fit: cover;
+  border-radius: 50%; margin-bottom: var(--s5);
+  padding: 4px; border: 2px solid var(--trace); background: var(--paper);
+}
+@media (max-width: 560px) { .photo { width: 112px; height: 112px; } }
 .name {
   font-weight: 800;
   font-size: clamp(3rem, 2rem + 3vw, 4.4rem);
