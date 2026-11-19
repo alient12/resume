@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Remember Ali Entezari</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#EEF1F5">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .card { max-width: 30rem; margin: 0 auto; padding: 3rem 1.5rem calc(2rem + env(safe-area-inset-bottom)); }
+  .card .name { font-size: clamp(2.6rem, 12vw, 3.6rem); }
+  .card .role { max-width: none; }
+  .when-big { font: 700 1.3rem/1.3 var(--display); margin: 2rem 0 .25rem; letter-spacing: -.01em; }
+  .stack-btns { display: grid; gap: .6rem; margin: 1.25rem 0 2rem; }
+  .stack-btns .btn { width: 100%; min-height: 52px; font-size: 1rem; }
+  .links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: .95rem; }
+  .done { color: #2E9E6A; font-weight: 500; min-height: 1.5em; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1 class="name">Ali<br>Entezari</h1>
+    <p class="role">Python developer and applied AI engineer, finishing an M.Sc. at Polytechnique Montréal. Available for remote work from January 2027.</p>
+
+    <p class="when-big" id="when">Get a reminder in two days</p>
+    <p class="muted" id="met-line">So you remember we talked, with a link back to my resume.</p>
+
+    <div class="stack-btns">
+      <a class="btn btn-primary" id="ics" href="#">Add to Apple or Outlook calendar</a>
+      <a class="btn" id="gcal" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+    </div>
+    <p class="done" id="done" role="status"></p>
+
+    <div class="links">
+      <a href="./">View my resume</a>
+      <a href="Ali_Entezari_Resume.pdf" download>Download the PDF</a>
+      <a href="https://www.linkedin.com/in/ali-e-8a878ab6/">LinkedIn</a>
+    </div>
+  </main>
+
+  <script src="assets/common.js"></script>
+  <script src="assets/remind.js"></script>
+</body>
+</html>

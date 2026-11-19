@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Share · Ali Entezari</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ali QR">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #18202B; --muted: #5D6878; --line: #D5DBE3; --trace: #2B59C3; --fire: #E39B2D; color-scheme: light; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: #fff; color: var(--ink);
+    font: 400 1rem/1.5 'IBM Plex Sans', system-ui, sans-serif;
+    display: flex; flex-direction: column; min-height: 100dvh;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus-visible { outline: 3px solid var(--fire); outline-offset: 2px; border-radius: 6px; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px 0; }
+  .who { font: 800 1.35rem/1 'Bricolage Grotesque', system-ui, sans-serif; letter-spacing: -.02em; }
+  .back { color: var(--muted); font-size: .92rem; text-decoration: none; padding: 10px 0 10px 12px; }
+
+  .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 16px 18px 0; padding: 4px; background: #EEF1F5; border-radius: 12px; }
+  .tabs button {
+    min-height: 46px; border: 0; border-radius: 9px; background: transparent;
+    font: 600 .95rem 'IBM Plex Sans', system-ui, sans-serif; color: var(--muted); cursor: pointer;
+  }
+  .tabs button[aria-selected="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(24,32,43,.14); }
+
+  .stage { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px 18px; touch-action: pan-y; }
+  .qr { width: min(88vw, 58dvh, 520px); aspect-ratio: 1; }
+  .qr svg { display: block; width: 100%; height: 100%; }
+  .say { text-align: center; margin-top: 14px; max-width: 30ch; }
+  .say strong { display: block; font: 700 1.25rem/1.25 'Bricolage Grotesque', system-ui, sans-serif; letter-spacing: -.01em; }
+  .say span { color: var(--muted); font-size: .95rem; }
+
+  .opts { margin: 0 18px 18px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .opts summary { cursor: pointer; color: var(--muted); font-size: .92rem; padding: 6px 0; list-style-position: inside; }
+  .opts label { display: block; font-size: .88rem; color: var(--muted); margin: 10px 0 4px; }
+  .opts input[type=text] {
+    width: 100%; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px;
+    font: 400 1rem 'IBM Plex Sans', system-ui, sans-serif; color: var(--ink);
+  }
+  .mode { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; font-size: .9rem; }
+  .mode input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--trace); }
+  .note { color: var(--muted); font-size: .84rem; margin: 8px 0 0; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+  <header>
+    <span class="who">Ali Entezari</span>
+    <a class="back" href="./">View resume</a>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Which QR code to show">
+    <button role="tab" id="tab-pdf" aria-controls="stage" aria-selected="true">Resume PDF</button>
+    <button role="tab" id="tab-remind" aria-controls="stage" aria-selected="false">Reminder</button>
+  </div>
+
+  <main class="stage" id="stage" role="tabpanel">
+    <div class="qr" id="qr" role="img"></div>
+    <p class="say" id="say-pdf"><strong>Scan for my resume</strong><span>Opens the PDF so you can save it to your phone.</span></p>
+    <p class="say" id="say-remind" hidden><strong>Scan to remember me</strong><span id="remind-sub">Adds a reminder to your calendar for 10:00 in two days, with a link to my resume.</span></p>
+  </main>
+
+  <details class="opts" id="opts" hidden>
+    <summary>Reminder options</summary>
+    <label for="met">Where we met (added to the reminder)</label>
+    <input type="text" id="met" placeholder="e.g. PyCon Montréal" maxlength="60" autocomplete="off">
+    <label class="mode"><input type="checkbox" id="linkmode">
+      <span>Use a link instead. Pick this if their camera doesn't offer "Add to calendar"; the link opens a page with calendar buttons.</span></label>
+    <p class="note" id="when-note"></p>
+  </details>
+
+  <script src="assets/qrcode.js"></script>
+  <script src="assets/common.js"></script>
+  <script src="assets/share.js"></script>
+</body>
+</html>
